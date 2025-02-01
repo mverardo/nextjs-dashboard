@@ -9,6 +9,11 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
+export async function fetchTotalPaidInvoices() {
+  const data = await sql<{ count: number }>`SELECT COUNT(*) FROM invoices`;
+  return data.rows[0].count;
+}
+
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
